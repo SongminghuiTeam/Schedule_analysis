@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    tools:context=".ViewPagerActivity">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:overScrollMode="never">
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"></FrameLayout>
+    </androidx.viewpager.widget.ViewPager>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#FFFFFF">
+
+            <LinearLayout
+                android:id="@+id/tab1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:padding="6dp"
+                android:onClick="swichTab">
+                <bjfu.it.xuyuanyuan.customview.util.IconText
+                    android:id="@+id/tab_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="&#xe646;"
+                    android:textColor="@color/tabNormal"/>
+                <TextView
+                    android:id="@+id/tab_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="收集箱"
+                    android:gravity="center"
+                    android:textColor="@color/tabNormal"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/tab2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:padding="6dp"
+                android:onClick="swichTab">
+                <bjfu.it.xuyuanyuan.customview.util.IconText
+                    android:id="@+id/tab_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="&#xe670;"
+                    android:textColor="@color/tabNormal"/>
+                <TextView
+                    android:id="@+id/tab_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="计划"
+                    android:gravity="center"
+                    android:textColor="@color/tabNormal"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/tab3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:padding="6dp"
+                android:onClick="swichTab">
+                <bjfu.it.xuyuanyuan.customview.util.IconText
+                    android:id="@+id/tab_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="&#xe70a;"
+                    android:textColor="@color/tabNormal"/>
+                <TextView
+                    android:id="@+id/tab_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="我的"
+                    android:gravity="center"
+                    android:textColor="@color/tabNormal"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

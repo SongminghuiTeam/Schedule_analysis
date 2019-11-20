@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ClickLatlongActivity">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#FFFFFF">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="    "
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/header_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="选择地点"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            android:textColor="#03A9F4"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确定"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            android:textColor="#03A9F4"
+            android:onClick="comform"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/address"
+            android:maxLines="1"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入/选择地点"
+            android:background="@drawable/positionnavi_background_edittext"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            android:textSize="12sp"
+            android:textColor="#C3C3C3"/>
+    </LinearLayout>
+
+    <com.amap.api.maps.MapView
+        android:id="@+id/clickMapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

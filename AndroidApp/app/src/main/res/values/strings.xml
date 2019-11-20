@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">日程规划师</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="arrow_up">&#xe719;</string>
+    <string name="arrow_down">&#xe60a;</string>
+</resources>

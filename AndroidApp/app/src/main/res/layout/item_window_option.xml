@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/option"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <bjfu.it.xuyuanyuan.customview.util.IconText
+            android:id="@+id/option_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&#xe63b;"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:textColor="#039BE5"/>
+        <TextView
+            android:id="@+id/option_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="示例选项"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:padding="10dp"
+            android:maxLines="1"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+</LinearLayout>

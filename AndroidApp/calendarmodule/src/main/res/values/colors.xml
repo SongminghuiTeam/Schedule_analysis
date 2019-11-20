@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="weekday">#C3C3C3</color>
+    <color name="weekend">#039BE5</color>
+    <color name="ram1">#F44336</color>
+    <color name="ram2">#E91E63</color>
+    <color name="ram3">#9C27B0</color>
+    <color name="ram4">#673AB7</color>
+    <color name="ram5">#3F51B5</color>
+    <color name="ram6">#2196F3</color>
+    <color name="ram7">#03A9F4</color>
+    <color name="ram8">#00BCD4</color>
+    <color name="ram9">#009688</color>
+    <color name="ram10">#4CAF50</color>
+    <color name="ram11">#8BC34A</color>
+    <color name="ram12">#CDDC39</color>
+    <color name="ram13">#FFEB3B</color>
+    <color name="ram14">#FFC107</color>
+    <color name="ram15">#FF9800</color>
+    <color name="ram16">#FF5722</color>
+</resources>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>修改昵称</title>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<link rel="stylesheet" type="text/css" href="css/aui.css" />
+		<style>
+			body,html{
+				width: 100%;
+				height: 100%;
+			}
+			
+			.t-chnick-container{
+				display: flex;
+				height: 100%;
+				flex-direction: column;
+			}
+			.t-chnick-item{
+				width: auto;
+				height: auto;
+				text-align: center;
+			}
+			.t-chnick-item-button{
+				padding: 10px;
+			}
+			
+			.t-chnick-item-button>div {
+				border: 1px solid #03A9F4;
+				color: #03A9F4;
+				border-radius: 5px;
+				padding: 5px 10px;
+				width: 150px;
+				margin: auto;
+			}
+			
+			.t-chnick-item-button>div:hover{
+				background: #03A9F4;
+				color: white;
+			}
+			
+			.t-chnick-input{
+				background: transparent;
+				padding: 10px;
+				width: 100%;
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		<div class="t-chnick-container">
+			<div class="t-chnick-item">
+				<input id="t_chnick_input" class="t-chnick-input" placeholder="改个昵称呗 (3-8个字之间哦)"/>
+			</div>
+			<div class="t-chnick-item t-chnick-item-button">
+				<div onclick="changePWD()">保存</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="script/api.js" ></script>
+		<script type="text/javascript" src="script/aui-dialog.js" ></script>
+		<script>
+			var tChnickInput = document.getElementById("t_chnick_input");
+			var dialog = new auiDialog();
+			
+			function changePWD(){
+				if(/^.{3,8}$/g.test(tChnickInput.value)){
+					db.changeNickname(tChnickInput.value);
+				}else{
+					onError("格式有误");
+				}
+			}
+			
+			function onSucceed(){
+				dialog.alert({title: "修改成功", msg: "您的昵称已经修改成功", buttons : ["确定"]}, function(ret){
+					web.closeWindow();
+				});
+			}
+			
+			function onError(msg){
+				dialog.alert({title: "错误", msg: msg, buttons : ["确定"]}, function(ret){
+					
+				});
+			}
+		</script>
+	</body>
+</html>
