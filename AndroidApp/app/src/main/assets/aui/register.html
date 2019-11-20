@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>注册</title>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<link rel="stylesheet" type="text/css" href="css/aui.css" />
+		<style>
+			.t-register-root{
+				display: flex;
+				flex-direction: column;
+			}
+			
+			.t-register-title{
+				margin-top: 50px;
+				margin-bottom: 30px;
+				font-weight: 1000;
+			}
+			
+			.t-register-title, .t-register-inputbox{
+				padding: 10px;
+			}
+			
+			.t-register-inputbox-group{
+				border-radius: 1px;
+			}
+			
+			
+			.t-register-registerbutton{
+				margin: 0px 10px;
+				width: auto;;
+			}
+			
+			.t-register-othertool{
+				padding: 10px;
+				text-align: center;
+				margin-top: 50px;
+			}
+			
+			.t-register-tip{
+				padding: 10px;
+			}
+			
+			/*动态区*/
+			.hide{
+				display: none !important;
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		<div class="t-register-root">
+			<h1 class="t-register-title">欢迎注册日程帐号</h1>
+			<div class="aui-content aui-margin-b-15 t-register-inputbox">
+			    <ul class="aui-list aui-form-list t-register-inputbox-group">
+			        <li class="aui-list-item t-register-inputbox-password">
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-label-icon">
+			                    <i class="aui-iconfont aui-icon-mobile"></i>
+			                </div>
+			                <div class="aui-list-item-input">
+			                    <input  id="t_register_inputbox_text" placeholder="请输入手机号码">
+			                </div>
+			                <div class="aui-list-item-label-icon">
+			                    <i onclick="clearInputBox()" id="t_register_inputbox_closebtn" class="hide t-register-class-hide aui-iconfont aui-icon-close"></i>
+			                </div>
+			            </div>
+			        </li>
+			    </ul>
+			</div>
+			<p id="t_register_tip" class="t-register-tip aui-text-danger hide">你的手机号有误，请修改输入后重试</p>
+			<div onclick="getCode()" id="t_register_button" class="aui-btn aui-btn-block aui-btn-info aui-btn-sm t-register-registerbutton">获取验证码</div>
+			<p class="t-register-othertool"> <span>帮助</span></p>
+		</div>
+				
+		<script type="text/javascript" src="script/api.js" ></script>
+		<script type="text/javascript" src="script/aui-dialog.js" ></script>
+		<script>
+			var tRegisterInputBoxText = document.getElementById("t_register_inputbox_text");
+			var tRegisterInputBoxCloseBtn = document.getElementById("t_register_inputbox_closebtn");
+			var tRegisterTip = document.getElementById("t_register_tip");
+			var tRegisterButton = document.getElementById("t_register_button");
+			
+			var dialog = new auiDialog();
+			
+			tRegisterInputBoxText.onkeyup = examPhoneStringOnInput;
+			tRegisterInputBoxText.onblur = examPhoneStringOnExit;
+			
+			function getCode(){
+				if(matchPhone(tRegisterInputBoxText.value)){
+					//调用java
+					db.sendSMS(tRegisterInputBoxText.value);
+					invalidButton();
+				}else{
+					onError("手机号不正确");
+				}
+			}
+			
+			function examPhoneStringOnInput(){
+				if(this.value == ""){
+					tRegisterInputBoxCloseBtn.classList.add("hide");
+				}else{
+					tRegisterInputBoxCloseBtn.classList.remove("hide");
+				}
+			}
+			
+			function examPhoneStringOnExit(){
+				if(!matchPhone(this.value)){
+					tRegisterTip.classList.remove("hide");
+				}else{
+					tRegisterTip.classList.add("hide");
+				}
+			}
+			
+			function matchPhone(phoneString){
+				var reg = /^1\d{10,10}$/g;
+				return (reg.test(phoneString));
+			}
+			
+			function clearInputBox(){
+				tRegisterInputBoxText.value = "";
+			}
+			
+			function invalidButton(){
+				tRegisterButton.onclick = null;
+			}
+			
+			function envalidButton(){
+				tRegisterButton.onclick = getCode;
+			}
+			
+			
+			//JAVA接口
+			function onSucceed(){
+				envalidButton();
+				window.location.href="check.html?phone=" + tRegisterInputBoxText.value;
+			}
+			
+			function onError(e){
+				dialog.alert({title : "错误", msg : e, buttons : ["确定"]}, function(ret){
+					envalidButton();
+				})
+			}
+			
+		</script>
+	</body>
+</html>
+ 
+ 

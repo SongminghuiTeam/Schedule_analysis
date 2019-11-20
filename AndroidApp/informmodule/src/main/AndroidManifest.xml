@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android"
+package="com.cloudea.informmodule">
+
+<uses-permission android:name="android.permission.VIBRATE" />
+<uses-permission android:name="android.permission.WAKE_LOCK" />
+
+<application>
+
+    <service
+        android:name=".InformService"
+        android:enabled="true"
+        android:exported="true" />
+
+    <receiver android:name=".ClockReceiver">
+        <intent-filter>
+            <action android:name="com.cloudea.informmodule.awake" />
+        </intent-filter>
+    </receiver>
+
+
+    <service
+        android:name="com.cloudea.informmodule.DaemonIntentService"
+        android:exported="false"
+        android:process=":informDaemon"></service>
+</application>
+
+
+</manifest>

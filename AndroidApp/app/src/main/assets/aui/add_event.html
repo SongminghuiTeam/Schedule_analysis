@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<link rel="stylesheet" type="text/css" href="css/aui.css" />
+		<title>添加事件</title>
+		<style>
+			html,body{
+				height: 100%;
+			}
+			.t-adde{
+				display: flex;
+				flex-direction: column;
+			}
+			.t-adde-input{
+				width: 100%;
+			}
+			.t-adde-input textarea{
+				display: block;
+				height: 100px;
+				width: 100%;
+				padding: 5px;
+				background: #FFFFFF;
+			}
+			.t-adde-button{
+					align-self: center;
+			}
+			.t-adde-button div{
+				padding: 5px 50px;
+				margin: 10px;
+				border-radius: 5px;
+				text-align: center;
+				border: 1px solid #03A9F4;
+				color: #03A9F4;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="t-adde">
+			<div class="t-adde-input"><textarea id="t_adde_input" placeholder="请输入事件内容"></textarea></div>
+			
+			<div class="t-adde-button">
+				<div onclick="addEvent()">确定</div>
+			</div>
+		</div>
+	</body>
+	
+	<script type="text/javascript" src="script/api.js" ></script>
+	<script type="text/javascript" src="script/aui-dialog.js" ></script>
+	<script>
+		var tAddeInput = document.getElementById("t_adde_input");
+		
+		function addEvent(){
+			//置剪贴板文本
+			tAddeInput.select();
+			document.execCommand("copy");
+			web.closeWindow();
+		}
+		
+	</script>
+</html>

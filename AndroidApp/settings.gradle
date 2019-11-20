@@ -1,0 +1,1 @@
+include ':app', ':calendarmodule', ':calendarmodule', ':calendarmodule2', ':calendarmodule', ':basemodule', ':databasemodule', ':localstoragemodule', ':viewandeditmodule', ':informmodule', ':positonnavi'

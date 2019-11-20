@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#191b1b</color>
+    <color name="colorPrimaryDark">#e030aaa8</color>
+    <color name="colorAccent">#24d81b</color>
+    <color name="tabNormal">#666666</color>
+    <color name="tabSelected">#03A9F4</color>
+    <color name="tabSelectedLight">#8303A9F4</color>
+    <color name="taskRunning">#F44336</color>
+    <color name="taskComming">#8203A9F4</color>
+    <color name="taskCompleted">#C3C3C3</color>
+    <color name="taskTitle">#000000</color>
+    <color name="taskNormal">#666666</color>
+</resources>

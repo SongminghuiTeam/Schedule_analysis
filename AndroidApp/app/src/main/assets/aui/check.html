@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>注册</title>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<link rel="stylesheet" type="text/css" href="css/aui.css" />
+		<style>
+			.t-check-root{
+				display: flex;
+				flex-direction: column;
+			}
+			
+			.t-check-title{
+				margin-top: 50px;
+				font-weight: 1000;
+			}
+			
+			.t-check-title, .t-check-inputbox{
+				padding: 10px;
+			}
+			
+			.t-check-inputbox-group{
+				border-radius: 1px;
+			}
+			
+			
+			.t-check-checkbutton{
+				margin: 0px 10px;
+				width: auto;;
+			}
+			
+			.t-check-othertool{
+				padding: 10px;
+				text-align: center;
+				margin-top: 50px;
+			}
+			
+			.t-check-tip{
+				padding: 10px;
+			}
+			
+			.t-check-code{
+				display: flex;
+				flex-direction: row;
+				justify-content: space-around;
+				padding: 10px 0px;
+			}
+			
+			.t-check-code input{
+				width: 40px;
+				height: 40px;
+				border: 1px solid #dedede;
+				border-radius: 5px;
+				text-align: center;
+				background: #FFFFFF;
+			}
+			
+			.t-check-regetcode{
+				padding: 20px 0px 0px 0px;
+				text-align: center;
+			}
+			
+			.t-check-regetcode div{
+				height: auto;
+				padding: 5px 20px;
+				border-radius: 100px;
+			}
+			
+			.hide{
+				display: none;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div class="t-check-root">
+			<h1 class="t-check-title">输入验证码</h1>
+			<p class="t-check-tip aui-text-default"> <span>请输入</span> <span id="t_check_phone">15501080803</span> <span>收到的验证码</span></p>
+			
+			<div id="t_check_code" class="t-check-code">
+				<input maxlength="1" type="number" />
+				<input maxlength="1" type="number"/>
+				<input maxlength="1" type="number"/>
+				<input maxlength="1" type="number"/>
+				<input maxlength="1" type="number"/>
+				<input maxlength="1" type="number"/>
+			</div>
+			
+			<div class="t-check-regetcode">
+				<div id="t_check_button" class="aui-btn aui-btn-info aui-btn-outlined aui-btn-sm">重新获取验证码</div>
+			</div>
+			<p class="t-check-othertool"> <span>帮助</span></p
+		</div>
+		
+		<script type="text/javascript" src="script/api.js" ></script>
+		<script type="text/javascript" src="script/aui-dialog.js" ></script>
+		<script>
+			var tCheckPhone = document.getElementById("t_check_phone");
+			var tCheckClose = document.getElementById("t_check_close");
+			var tCheckButton = document.getElementById("t_check_button");
+			var tCheckCode = document.getElementById("t_check_code");
+			var tCheckCodes = tCheckCode.getElementsByTagName("input");
+			var hasRegistered = false;
+			
+			var dialog = new auiDialog();
+			
+			window.onload = function(){
+				var ret = window.location.search.match(/\d+/);
+				if(ret != null){
+					window.phone = ret[0];
+					tCheckPhone.innerText = window.phone;
+				}
+				
+				var left = 60;
+				tCheckButton.onclick = "";
+				var clock = setInterval(function(){
+					tCheckButton.innerText = left + "秒后重新获取";
+					left--;
+					if(left == 0){
+						tCheckButton.innerText = "重新获取验证码";
+						clearInterval(clock);
+						tCheckButton.onclick = reGetCode;
+					}
+				}, 1000);
+			}
+			
+			//给验证码框绑定事件
+			for(var i = 0; i < tCheckCodes.length; i++){
+				tCheckCodes[i].onkeyup = (function(index){
+					return function(e){
+						if(e.key != "Backspace"){
+							if(index < tCheckCodes.length - 1){
+								tCheckCodes[index + 1].focus();
+							}
+						}
+					}
+				})(i);
+				
+				tCheckCodes[i].onkeydown = (function(index){
+					return function(e){
+						if(e.key == "Backspace"){
+							if(this.value == ""){
+								if(index > 0){
+									tCheckCodes[index - 1].focus();
+								}
+							}else{
+								this.value = "";
+							}
+							return false;
+						}else{
+							this.value = "";
+							console.log(e);
+						}
+					}
+				})(i);
+				
+				tCheckCodes[0].focus();
+				tCheckCodes[0].select();
+			}
+			
+			
+			tCheckCode.onkeyup = examPhoneStringOnInput;
+			
+			function reGetCode(){
+				//发送
+				db.sendSMS(window.phone);
+				//
+				window.onload();
+			}
+			
+			function examPhoneStringOnInput(){
+				var canSubmit = true;
+				var text = ""
+				var i = 0;
+				for(var code of tCheckCodes){
+					if(code.value == ""){
+						canSubmit = false;
+						break;
+					}
+					text += code.value;
+				}
+				
+				if(canSubmit){
+					for(var code of tCheckCodes){
+						code.blur();
+					}
+					if(!hasRegistered){
+						this.blur();
+						db.signUp(window.phone, getRandomName(), "123", text);
+					}else{
+						onError("您已经注册过了，请返回")
+					}
+				}
+			}
+			
+			function clearInputBox(){
+				tCheckCode.value = "";
+			}
+			
+			function getRandomName(){
+				var optionChar = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a',
+				'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+				'n', 'o', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+				var name = "";
+				for(var i = 0; i < 8; i++){
+					var randPos = parseInt(Math.random() * optionChar.length);
+					var randChar = optionChar[randPos];
+					name += randChar;
+				}
+				
+				return name;
+			}
+			//JAVA接口
+			function onSucceed(){
+				hasRegistered = true;
+				dialog.alert({title : "注册成功", msg : "默认密码为：123，请即时修改", buttons : ["确定"]}, function(ret){
+					web.closeWindow();
+				})
+			}
+			
+			function onError(e){
+				dialog.alert({title : "错误", msg : e, buttons : ["确定"]}, function(ret){
+					
+				})
+			}
+		</script>
+	</body>
+</html>
+ 
+ 

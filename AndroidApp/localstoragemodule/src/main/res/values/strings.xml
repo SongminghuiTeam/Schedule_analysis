@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">LocalStorageModule</string>
+    <string name="sql_create_table">
+        CREATE TABLE "event" (
+          "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+          "object_id" TEXT ,
+          "content" TEXT NOT NULL,
+          "addr" TEXT NOT NULL,
+          "start_time" TEXT NOT NULL,
+          "end_time" TEXT NOT NULL,
+          "note_time" integer NOT NULL,
+          "state" integer NOT NULL
+        );
+
+    </string>
+</resources>

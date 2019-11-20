@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">CustomView</string>
+    <string name="image1Description">This is image One</string>
+    <string name="text">Test HorizontalScrollView</string>
+    <string name="delete">删除</string>
+    <string name="unread">标记为未读</string>
+    <string name="clickItemOne">click in List1</string>
+    <string name="navigate">进入导航</string>
+    <string name="title_activity_bottom">BottomActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="main_home">首页</string>
+    <string name="main_mine">我的</string>
+    <string name="collection">收集箱</string>
+    <string name="CollectionClick">viewPager.setCurrentItem(0)</string>
+    <string name="unslovedList">未完成的事件</string>
+    <string name="slovedList">完成的事件</string>
+    <string name="add">添加</string>
+</resources>
